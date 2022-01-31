@@ -100,3 +100,79 @@ const title = document.querySelector('.title');
 title.classList.toggle('test'); // add 'test' to class
 title.classList.toggle('test'); // removes 'test' added to class 
 */
+
+/*
+// PARENTS, CHILDRENS, & SIBLINGS
+const article = document.querySelector('article');
+// console.log(article.children);
+// console.log(Array.from(article.children)); // convert HTMLCollection to Array since cannot use for each loop in HTMLCollection
+// Array.from(article.children).forEach(child => {
+//     child.classList.add('article-element');
+// });
+
+const title = document.querySelector('h2');
+console.log(title.parentElement); // get parent element
+console.log(title.parentElement.parentElement); 
+console.log(title.nextElementSibling); // get sibling element
+console.log(title.previousElementSibling); // get sibling element
+
+// chaining
+console.log(title.nextElementSibling.parentElement.children);
+*/
+
+/*
+// EVENT BASICS (CLICK EVENTS), CREATE & REMOVE ELEMENTS
+// const button = document.querySelector('button');
+// button.addEventListener('click', () => {
+//     console.log('clicked me');
+// });
+
+const ul = document.querySelector('ul');
+const button = document.querySelector('button');
+
+button.addEventListener('click', () => {
+    const li = document.createElement('li');
+    li.textContent = 'something new to do';
+    // ul.append(li); // insert node after last child
+    ul.prepend(li); // insert node before first child
+});
+
+// const items = document.querySelectorAll('li');
+
+// items.forEach(item => {
+//     item.addEventListener('click', e => {
+//         // e.target.style.textDecoration = 'line-through'; // add line through style in element
+//         e.target.remove(); // remove element 
+//         e.stopPropagation();
+//         console.log('event in LI');
+//     });
+// });
+
+ul.addEventListener('click', e => {
+    // console.log('event in UL');
+    if (e.target.tagName === 'LI') {
+        e.target.remove();
+    }
+});
+*/
+
+/*
+// MORE DOM EVENTS
+const copy = document.querySelector('.copy-me');
+copy.addEventListener('copy', () => {
+    console.log('OI! my content');
+});
+
+const box = document.querySelector('.box');
+box.addEventListener('mousemove', e => {
+    // console.log(e);
+    // console.log(e.offsetX, e.offsetY);
+    box.textContent = `x pos - ${e.offsetX}  y pos - ${e.offsetY}`;
+});
+
+document.addEventListener('wheel', e => {
+    console.log(e.pageX, e.pageY);
+});
+*/
+
+// BUILDING A POPUP
