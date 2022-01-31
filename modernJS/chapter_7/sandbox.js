@@ -1,80 +1,61 @@
-// OBJECT LITERALS
-let user = {
-    name: 'reno',
-    age: '30',
-    email: 'reno@email.com',
-    location: 'Hawaii',  
-    blogs: [
-        { title: 'why loco moco is mean', likes: 30 },
-        { title: '10 ways to fish', likes: 50 },
-    ],
-    login() {
-        console.log('user logged in');
-    },
-    logout() {
-        console.log('user logged out');
-    },
-    logBlogs() {
-        // console.log(this.blogs);
-        console.log('this user has written the following blogs: ');
-        this.blogs.forEach(blogs => {
-           console.log(blogs.title, blogs.likes); 
-        });
+/*
+// SUBMIT EVENTS
+const form = document.querySelector('.signup-form');
+// const username = document.querySelector('#username'); // 1 way
+
+form.addEventListener('submit', e => {
+    e.preventDefault(); // submit event default is to refresh page... we are preventing it
+    // console.log(username.value); // 1 way
+    console.log(form.username.value); // id attribute, 2nd way
+});
+*/
+
+/*
+// REGULAR EXPRESSIONS (RegEx) & Testing
+const username = '123fsreno232';
+const pattern = /^[a-z]{6,}$/; // a-z lowercase, 6 characters (^, beginning $, end)
+
+// let result = pattern.test(username); // test regex, returns t or f
+// console.log(result);
+
+// if (result) {
+//     console.log('regex test passed :)');
+// } else {
+//     console.log('regex test failed :(');
+// }
+
+// let result = username.search(pattern); // returns integer of position of match
+// console.log(result);
+*/
+
+// BASIC FORM VALIDATION & KEYBOARD EVENTS
+const form = document.querySelector('.signup-form');
+const feedback = document.querySelector('.feedback');
+const usernamePattern = /^[a-zA-Z]{6,12}$/;
+
+form.addEventListener('submit', e => {
+    e.preventDefault(); // submit event default is to refresh page... we are preventing it
+
+    // validation
+    const username = form.username.value;
+
+    if (usernamePattern.test(username)) {
+        // feedback good info
+        feedback.textContent = 'that username is valid!';
+    } else {
+        // feedback help info
+        feedback.textContent = 'username must contain letters only & be between 6-12 characters long';
     }
-};
 
-user.logBlogs();
+});
 
-// MATH OBJECT
-console.log(Math);
-console.log(Math.PI);
-console.log(Math.E);
-
-const area = 8.4;
-
-console.log(Math.round(area));
-console.log(Math.floor(area));
-console.log(Math.ceil(area));
-console.log(Math.trunc(area));
-
-// random numbers
-const random = Math.random();
-console.log(random);
-console.log(Math.round(random * 100));
-
-// PRIMITIVE & REFERENCE TYPES
-/*
-* Primitive:
-* numbers
-* strings
-* Booleans
-* null
-* undefined
-* symbols
-*/
-
-// let scoreOne = 50;
-// let scoreTwo = scoreOne;
-
-// console.log(`scoreOne: ${scoreOne}`, `scoreTwo: ${scoreTwo}`);
-// scoreOne = 100;
-// console.log(`scoreOne: ${scoreOne}`, `scoreTwo: ${scoreTwo}`);
-
-/*
-* Reference:
-* All types of objects
-*   - object literals
-*   - arrays
-*   - functions
-*   - dates
-*   - all other objects
-*/
-
-const userOne = { name: 'reno', age: 29 };
-const userTwo = userOne;
-
-console.log(userOne, userTwo);
-
-userOne.age = 30;
-
-console.log(userOne, userTwo);
+// live feedback
+form.username.addEventListener('keyup', e => {
+    console.log(e);
+    // console.log(e.target.value, form.username.value);
+    if (usernamePattern.test(e.target.value)) {
+        form.username.setAttribute('class', 'success');
+    } else {
+        form.username.setAttribute('class', 'error');
+    }
+});
